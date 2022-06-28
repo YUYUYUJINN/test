@@ -5,17 +5,19 @@
     <title>Title</title>
 </head>
 <body>
+
 <form method="post">
     {% csrf_token %}
-    {{ postForm }}
-    <button>저장</button>
+    {{ postForm}}
+    <button>작성</button>
 </form>
 {% if messages %}
     {% for message in messages %}
         {% if message.tags == 'error' %}
-            {{message}}
+            {{ message }}
         {% endif %}
     {% endfor %}
 {% endif %}
+
 </body>
 </html>
