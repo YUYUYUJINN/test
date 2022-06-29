@@ -6,10 +6,10 @@ from board.models import Post
 class TestViews(TestCase):
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create_user(username='user01', password='qwer1234!')
+        self.user = User.objects.create_user(username='user01', password='qwer1234')
 
     def test_post_create_GET_with_login(self):
-        self.client.login(username='user01', password='qwer1234!')
+        self.client.login(username='user01', password='qwer1234')
         response = self.client.get('/board/create')
 
         self.assertEqual(response.status_code, 200)
@@ -26,7 +26,7 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_post_create_POST_with_login(self):
-        self.client.login(username='user01', password='qwer1234!')
+        self.client.login(username='user01', password='qwer1234')
         response = self.client.post(
             '/board/create',
             data={'title': 'title1', 'contents': 'contents1'}
@@ -36,7 +36,7 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_post_create_POST_with_check_title_length(self):
-        self.client.login(username='user01', password='qwer1234!')
+        self.client.login(username='user01', password='qwer1234')
         response = self.client.post(
             '/board/create',
             data={'title': 'a', 'contents': 'contents1'}
@@ -45,3 +45,6 @@ class TestViews(TestCase):
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), '제목은 5글자 이상이어야 합니다.')
         self.assertEqual(response.status_code, 400)
+
+
+
